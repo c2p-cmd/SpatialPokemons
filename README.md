@@ -43,6 +43,10 @@ uvicorn app:app --host 0.0.0.0 --port 8000 --reload
     <tr>
 </table>
 
+### Video:
+
+<video src="https://raw.githubusercontent.com/c2p-cmd/SpatialPokemons/main/readme_images/playback.mp4"> </video>
+
 ### Credits
 - [Pokemon API](https://pokeapi.co/docs/v2#pokemon)
 - [kritimodi/GIF-Swift](https://github.com/kiritmodi2702/GIF-Swift/blob/master/GIF-Swift/iOSDevCenters%2BGIF.swift)
