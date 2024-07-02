@@ -54,12 +54,19 @@ struct AddPokemonView: View {
             }
             
             ForEach(Array(vm.pokemonMap.keys), id: \.name) { (p: PokemonModel) in
-                if let sprites = self.vm.pokemonMap[p] {
-                    LabeledContent(p.name) {
-                        PokemonGrid(pokemonGifData: sprites)
+                VStack {
+                    if let sprites = self.vm.pokemonMap[p] {
+                        LabeledContent(p.name) {
+                            PokemonGrid(pokemonGifData: sprites)
+                        }
+                    } else {
+                        Text("nothing for \(p.name)")
                     }
-                } else {
-                    Text("nothing for \(p.name)")
+                }
+                .contextMenu {
+                    Button("Remove", systemImage: "xmark.circle", role: .destructive) {
+                        vm.pokemonMap.removeValue(forKey: p)
+                    }
                 }
             }
         }
@@ -68,6 +75,7 @@ struct AddPokemonView: View {
 
 fileprivate struct PokemonGrid: View {
     let pokemonGifData: [Data]
+    var cry: String? = nil
     
     @Environment(\.openWindow) var openWindow
     @Environment(\.openImmersiveSpace) var openSpace

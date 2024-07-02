@@ -10,7 +10,6 @@ import Foundation
 struct PokemonModel: Codable, Hashable {
     let name: String
     let animated_sprites: AnimatedSprites
-    let cries: PokemonCries
 }
 
 struct AnimatedSprites: Codable, Hashable {
@@ -29,10 +28,6 @@ struct AnimatedSprites: Codable, Hashable {
             }
         }
     }
-}
-
-struct PokemonCries: Codable, Hashable {
-    let latest: String?, legacy: String?
 }
 
 enum PokemonError: String, LocalizedError {

@@ -13,13 +13,16 @@ struct PokemonsApp: App {
     @State private var appModel = AppModel()
 
     var body: some Scene {
-        WindowGroup {
+        WindowGroup(id: "main", for: Bool.self) { _ in
             ContentView()
+                .frame(minWidth: 600, minHeight: 600)
                 .environment(appModel)
         }
+        .defaultSize(width: 600, height: 900)
+        .windowResizability(.contentSize)
 
-        ImmersiveSpace(id: appModel.immersiveSpaceID) {
-            ImmersiveView()
+        ImmersiveSpace(id: appModel.immersiveSpaceID, for: URL.self) { $url in
+            AnimatedPokemonSpace(uiImageURL: url ?? URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/125.gif")!)
                 .environment(appModel)
                 .onAppear {
                     appModel.immersiveSpaceState = .open
@@ -29,5 +32,13 @@ struct PokemonsApp: App {
                 }
         }
         .immersionStyle(selection: .constant(.mixed), in: .mixed)
+        
+        WindowGroup(for: Data.self) { $data in
+            AnimatedPokemonView(uiImage: .gifImageWithData(data!))
+                .frame(minHeight: 100)
+        }
+        .defaultSize(width: 300, height: 300)
+        .windowStyle(.volumetric)
+        .windowResizability(.contentMinSize)
      }
 }
