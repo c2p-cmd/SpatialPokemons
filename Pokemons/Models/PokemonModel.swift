@@ -13,10 +13,10 @@ struct PokemonModel: Codable, Hashable {
 }
 
 struct AnimatedSprites: Codable, Hashable {
-    let back_default: String
+    let back_default: String?
     let back_shiny: String?
     
-    let front_default: String
+    let front_default: String?
     let front_shiny: String?
     
     func allUrls() -> [URL] {
