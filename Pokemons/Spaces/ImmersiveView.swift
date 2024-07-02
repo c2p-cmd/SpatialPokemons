@@ -7,7 +7,6 @@
 
 import SwiftUI
 import RealityKit
-import RealityKitContent
 
 struct AnimatedPokemonSpace: View {
     let uiImageURL: URL
